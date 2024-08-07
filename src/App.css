@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+.active_tab {
+  font-weight: bold;
+}
+
+input {
+  outline: none;
+}
+
+.df_jcc {
+  display: flex;
+  justify-content: center;
+}
+
+
+.text {
+  display: flex;
+}
+
+.td_lt {
+  text-decoration: line-through;
+}
+
+ul {
+  padding: 0;
+}
+
+button {
+  text-wrap: nowrap;
+}
