@@ -131,7 +131,8 @@ const ToDoList = ({ tasks, handleInputChange, addTask, deleteList, saveEditedTas
 
     function handleCheckboxChange(taskIndex, subtaskIndex) {
         const updatedTasks = [...tasks];
-        updatedTasks[taskIndex].tasks[subtaskIndex].done = !updatedTasks[taskIndex].tasks[subtaskIndex].done;
+        const subtask = updatedTasks[taskIndex].tasks.find(task => task.id === subtaskIndex);
+        subtask.done = !subtask.done;
         updateSubtask(updatedTasks);
     };
 
@@ -154,6 +155,13 @@ const ToDoList = ({ tasks, handleInputChange, addTask, deleteList, saveEditedTas
         const updatedTasks = [...tasks];
         updatedTasks[taskIndex].tasks = updatedTasks[taskIndex].tasks.filter(task => task.id !== subtaskId);
         updateSubtask(updatedTasks);
+    }
+
+    function handleAddFavorites(taskIndex, subtaskIndex) {
+        const updatedTasks = [...tasks];
+        const subtask = updatedTasks[taskIndex].tasks.find(task => task.id === subtaskIndex);
+        subtask.favorite = !subtask.favorite;
+        addFavorites(updatedTasks);
     }
 
     return (
@@ -206,7 +214,7 @@ const ToDoList = ({ tasks, handleInputChange, addTask, deleteList, saveEditedTas
                                                     </label>
                                                     <div className="actions">
                                                         <button onClick={() => handleDeleteSubtask(index, subtask.id)}>Delete</button>
-                                                        <button onClick={() => addFavorites(index, subtask.id)}>Favorites</button>
+                                                        <button onClick={() => handleAddFavorites(index, subtask.id)}>Favorites</button>
                                                     </div>
                                                 </div>
                                             ))}
@@ -228,7 +236,7 @@ const ToDoList = ({ tasks, handleInputChange, addTask, deleteList, saveEditedTas
                                                     </label>
                                                     <div className="actions">
                                                         <button onClick={() => handleDeleteSubtask(index, subtask.id)}>Delete</button>
-                                                        <button onClick={() => addFavorites(index, subtask.id)}>Favorites</button>
+                                                        <button onClick={() => handleAddFavorites(index, subtask.id)}>Favorites</button>
                                                     </div>
                                                 </div>
                                             ))}
